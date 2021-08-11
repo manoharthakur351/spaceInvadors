@@ -12,7 +12,7 @@ game = game.Environment()
 # player specific variables
 player = Player("player.png", game)
 player_movement_dirn = ""
-player_is_firing = False
+player.is_firing = False
 
 # bullet specific variables
 bullet = Bullet("bullet.png", game = game, player = player)
@@ -31,7 +31,7 @@ while game.is_on :
 			if event.key == pygame.K_4:
 				player_movement_dirn = "right"
 			if event.key == pygame.K_5:
-				player_is_firing = True			
+				player.is_firing = True			
 	
 	game.display.fill((0, 28, 28))
 	# THINGS BECOME VISIBLE FROM HERE
@@ -41,11 +41,8 @@ while game.is_on :
 	player.visible()
 	
 	# handling the bullet
-	if player_is_firing:
-		if player.bullet.has_spawned == False:
-			player.bullet.spawn()
-		player.bullet.visible()
-		player.bullet.move()
+	if player.is_firing:
+		player.fire()
 		
 	
 	pygame.display.update()
