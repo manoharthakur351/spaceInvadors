@@ -1,0 +1,2 @@
+pygame==2.0.0.dev8
+pygame-sdl2==2.1.0
