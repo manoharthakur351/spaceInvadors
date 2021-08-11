@@ -21,10 +21,6 @@ git commit -m " msg $u "
 echo PUSHING CHANGES.........
 git push
 
-
-echo PUSHING TO HEROKU.....
-git push heroku main
-
 echo LOGS ..........
 git log
 
