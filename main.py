@@ -1,38 +1,55 @@
 import pygame
-import random
+import game
 from player import Player
-from game import GameEnvironment
-# INITIALISING PYGAME
+from bullet import Bullet
+
 pygame.init()
 
-
-
-
-# __Main__
 # game specific variables
-window_size = [970, 1300]
-game = GameEnvironment(*window_size)
-player = Player("space-ship.png",20, game)
-player.setBullet('space_1.png')
+game = game.Environment()
+
 
 # player specific variables
-player_dirn= ""
+player = Player("player.png", game)
+player_movement_dirn = ""
+player_is_firing = False
 
-# game loop 
-while game.is_on:
-	game.screen.fill((2,4,44))
+# bullet specific variables
+bullet = Bullet("bullet.png", game = game, player = player)
+player.set_bullet(bullet)
+
+
+# GAME LOOP
+while game.is_on :
+	game.count()
 	
+	# CONTROLS
 	for event in pygame.event.get():
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_6:
-				player_dirn = "right"
+				player_movement_dirn = "left"
 			if event.key == pygame.K_4:
-				player_dirn ="left"
-			if event.key == pygame.K_4:
-				
-				player.fire()
-			
-	player.spawn()
-	player.move(12,player_dirn)
+				player_movement_dirn = "right"
+			if event.key == pygame.K_5:
+				player_is_firing = True			
+	
+	game.display.fill((0, 28, 28))
+	# THINGS BECOME VISIBLE FROM HERE
+	
+	# handling the player
+	player.move(player_movement_dirn)
+	player.visible()
+	
+	# handling the bullet
+	if player_is_firing:
+		if player.bullet.has_spawned == False:
+			player.bullet.spawn()
+		player.bullet.visible()
+		player.bullet.move()
+		
 	
 	pygame.display.update()
+	pass # GAME LOOP END
+
+
+
