@@ -26,7 +26,7 @@
 1. size = (x,y) `c`
 2. speed = [ ] `c`
 3. img = "abc.png" `c`
-4. 
+4. pos `v`
 
 ## bullet
 *attributes*

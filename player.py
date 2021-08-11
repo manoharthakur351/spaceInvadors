@@ -22,19 +22,19 @@ class Player ():
 		self.bullets.append(self.bullet)
 
 	def fire (self):
-		self.bullets.append(self.bullet)
-		for a in range(10) :
+
+		
+		if self.bullet.has_spawned == False:
+			self.bullet.spawn(self.pos[0], self.pos[1])
 			
-			if self.bullets[0].has_spawned == False:
-				self.bullets[0].spawn()
-				print(1)
-			self.bullets[0].visible()
-			
-			self.bullets[0].move()
-			
-			if self.bullets[0].pos[1] <= 0:
-				del self.bullets[0]
-				#print(self.bullets)
+		self.bullet.visible()
+		
+		self.bullet.move()
+		
+		if self.bullet.pos[1] <= 0:
+			self.bullet.pos[1] =self.game.display_size[1]-self.size[1]
+			self.bullet.pos[0] = self.pos[0]
+			self.bullet.spawn(self.pos[0], self.pos[1])
 		
 	def visible (self):
 		""" function to display player on screen. """
