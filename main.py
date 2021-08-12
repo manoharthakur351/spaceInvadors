@@ -5,6 +5,7 @@ from bullet import Bullet
 from enemy import Enemy
 
 pygame.init()
+pygame.font.init()
 
 # game specific variables
 game = game.Environment()
@@ -47,7 +48,7 @@ while game.is_on :
 				elif player.is_firing == True:
 					player.is_firing = False		
 	
-	game.display.fill((0, 28, 28))
+	game.display.fill((5, 100, 200))
 	# THINGS BECOME VISIBLE FROM HERE
 
 	# handling the bullet
@@ -66,6 +67,7 @@ while game.is_on :
 	
 
 	game.finish_enemy()
+	game.show_text("score : "+str(game.score))
 	
 	pygame.display.update()
 	pass # GAME LOOP END

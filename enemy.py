@@ -18,8 +18,14 @@ class Enemy ():
 		self.has_spawned = True
 		self.pos[0] = random.randint(*self.game.enemy_spawn_area_x)
 		self.pos[1] = random.randint(*self.game.enemy_spawn_area_y)
+<<<<<<< HEAD
 		self.size_ = random.randint(100,200)
 		self.size = (self.size_ ,self.size_ )
+=======
+		self.size = (random.randint(100,200),random.randint(100,200),)
+		self.img = pygame.transform.scale(self.img, self.size)
+		
+>>>>>>> 2ac5022f37264fb180f3dbfb40a91ed2de083e6a
 	def move(self):
 		self.pos[0] += self.speed
 		
